@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.util.concurrent.TimeUnit;
 
 public class BasePage {
     protected WebDriver driver;
@@ -29,4 +32,26 @@ public class BasePage {
         waitElementToAppear(element);
         element.sendKeys(text);
     }
+
+    public void cleanText(WebElement element){
+        waitElementToClickable(element);
+        element.clear();
+    }
+
+    public void clickElement(WebElement element){
+        waitElementToAppear(element);
+        waitElementToClickable(element);
+        element.click();
+    }
+
+    public void validateText(String expected, String obtained){
+        Assert.assertEquals(expected.toLowerCase().trim(), obtained.toLowerCase().trim());
+    }
+
+    public void scrollToElement(WebElement element){
+        waitElementToAppear(element);
+        actions.moveToElement(element);
+        actions.perform();
+    }
+
 }

@@ -13,7 +13,6 @@ public class BaseTest {
     public void suitSetup(){
         driver = new DriverSetup("chrome",false).getDriver();
         driver.get("https://store.steampowered.com/");
-
     }
 
     @AfterSuite

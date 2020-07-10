@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import settings.BasePage;
 
 import java.util.ArrayList;
@@ -16,14 +15,14 @@ public class NavigationBar extends BasePage {
     private WebElement searchInput;
 
     @FindBy(css = ".match_name")
-    List<WebElement> suggestedGames;
+    private List<WebElement> suggestedGames;
 
     public void writeTextOnSearchInput(String text){
         enterText(searchInput,text);
     }
 
     public void cleanTextOnSearchInput(){
-        searchInput.clear();
+        cleanText(searchInput);
     }
 
     public List<String> getSuggestedGames(){
@@ -32,6 +31,15 @@ public class NavigationBar extends BasePage {
             newList.add(game.getText());
         }
         return newList;
+    }
+
+    public void clickOnGame(String gameName){
+        for(WebElement game : suggestedGames){
+            if (game.getText().equalsIgnoreCase(gameName)){
+                clickElement(game);
+                break;
+            }
+        }
     }
 
     public NavigationBar(WebDriver driver) {
