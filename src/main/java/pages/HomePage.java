@@ -16,6 +16,12 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//li[.='Best Sellers']")
     private WebElement bestSellerProductsButton;
 
+    @FindBy(xpath = "//.[@fake='nothing']")
+    private WebElement fakeButton;
+
+    @FindBy(linkText = "SUPPORT")
+    private WebElement supportLink;
+
     public HomePage(WebDriver driver){
         super(driver);
         PageFactory.initElements(driver, this);
@@ -31,6 +37,11 @@ public class HomePage extends BasePage{
         this.click(bestSellerProductsButton);
         String is_active = bestSellerProductsButton.getAttribute("class");
         Assert.assertEquals(is_active,"active");
+    }
+
+    public void clickOnFakeButton(){
+        retryClickElement(supportLink, 3);
+        retryClickElement(fakeButton, 3);
     }
 
 

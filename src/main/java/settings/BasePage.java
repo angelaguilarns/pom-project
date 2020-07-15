@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -70,6 +71,21 @@ abstract public class BasePage {
     * Example -> retryClick(fancyButtonElement, 3)
     *
     * */
+
+    public void retryClickElement(WebElement element, int times){
+        boolean flag = false;
+        for (int i=0; i<times; i++){
+            try {
+                waitForElementToAppear(element);
+                element.click();
+                flag = true;
+                break;
+            }catch (Exception e){
+                System.out.println("Element not found. Retrying click on element: "+element);
+            }
+        }
+        Assert.assertTrue(flag,"Element '"+element+"' was never found.");
+    }
 
 }
 
