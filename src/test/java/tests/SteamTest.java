@@ -49,7 +49,6 @@ public class SteamTest extends BaseTest {
         navigationBar.writeTextOnSearchInput(gameToSearch);
         navigationBar.clickOnGame(gameToSearch);
         gamePage.validateGameTittleOnPage(gameToSearch);
-        gamePage.scrollToGameDetails();
         String gameDetailsTemplate =
                 "TITLE: Age of Empires II: Definitive Edition\n" +
                 "GENRE: Strategy\n" +

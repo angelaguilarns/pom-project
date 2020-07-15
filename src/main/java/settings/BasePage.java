@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 import java.util.concurrent.TimeUnit;
 
-public class BasePage {
+abstract public class BasePage {
     protected WebDriver driver;
     private WebDriverWait wait;
     private Actions actions;
@@ -26,6 +26,10 @@ public class BasePage {
 
     public void waitElementToClickable(WebElement element){
         wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public String getElementText(WebElement element){
+        return element.getText().trim().toLowerCase();
     }
 
     public void enterText(WebElement element, String text){
