@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 abstract public class BasePage {
@@ -59,12 +60,12 @@ abstract public class BasePage {
     }
 	
 	public void writeInInput(WebElement element, String message){
-        this.waitForElementToAppear(element);
+        waitElementToAppear(element);
         element.sendKeys(message);
     }
 
     public void hoverElement(WebElement element){
-        this.waitForElementToAppear(element);
+        this.waitElementToAppear(element);
         actions.moveToElement(element).perform();
     }
 
@@ -72,7 +73,7 @@ abstract public class BasePage {
     //https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/support/ui/ExpectedConditions.html
 
     public boolean isTextPresentOnElement(WebElement element, String text){
-        this.waitForElementToAppear(element);
+        this.waitElementToAppear(element);
         return wait.until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
@@ -81,7 +82,7 @@ abstract public class BasePage {
     }
 
     public boolean elementAttributeIs(WebElement element, String attribute, String value){
-        this.waitForElementToAppear(element);
+        this.waitElementToAppear(element);
         return wait.until(ExpectedConditions.attributeContains(element, attribute, value));
     }
 
@@ -98,7 +99,7 @@ abstract public class BasePage {
         boolean flag = false;
         for (int i=0; i<times; i++){
             try {
-                waitForElementToAppear(element);
+                waitElementToAppear(element);
                 element.click();
                 flag = true;
                 break;

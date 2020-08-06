@@ -28,13 +28,13 @@ public class HomePage extends BasePage{
     }
 
     public void clickPopularProductsButton(){
-        this.click(popularProductsButton);
+        this.clickElement(popularProductsButton);
         String is_active = popularProductsButton.getAttribute("class");
         Assert.assertEquals(is_active,"active");
     }
 
     public void clickBestSellerProductsButton(){
-        this.click(bestSellerProductsButton);
+        this.clickElement(bestSellerProductsButton);
         String is_active = bestSellerProductsButton.getAttribute("class");
         Assert.assertEquals(is_active,"active");
     }
