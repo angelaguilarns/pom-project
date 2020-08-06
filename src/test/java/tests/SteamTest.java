@@ -21,7 +21,7 @@ public class SteamTest extends BaseTest {
         gamePage = new GamePage(driver);
     }
 
-    @Test()
+    @Test(groups = "regression")
     public void validateSuggestedGames(){
         gameToSearch = "slug";
         navigationBar.writeTextOnSearchInput(gameToSearch);
@@ -35,7 +35,7 @@ public class SteamTest extends BaseTest {
         }
     }
 
-    @Test()
+    @Test(groups = "smoke")
     public void searchGame(){
         gameToSearch = "million arthur: arcana blood";
         navigationBar.writeTextOnSearchInput(gameToSearch);
@@ -43,7 +43,7 @@ public class SteamTest extends BaseTest {
         gamePage.validateGameTittleOnPage(gameToSearch);
     }
 
-    @Test
+    @Test(groups = "login")
     public void validateGameInformation(){
         gameToSearch = "Age of Empires II: Definitive Edition";
         navigationBar.writeTextOnSearchInput(gameToSearch);
@@ -56,6 +56,11 @@ public class SteamTest extends BaseTest {
                 "PUBLISHER: Xbox Game Studios\n" +
                 "FRANCHISE: Age of Empires";
         gamePage.validateGameDetails(gameDetailsTemplate);
+    }
+
+    @Test
+    public void baseTest(){
+        System.out.println("Test 1");
     }
 
 }

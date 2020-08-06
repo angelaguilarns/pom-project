@@ -11,8 +11,8 @@ import java.util.concurrent.TimeUnit;
 
 abstract public class BasePage {
     protected WebDriver driver;
-    private WebDriverWait wait;
-    private Actions actions;
+    protected WebDriverWait wait;
+    protected Actions actions;
 
     public BasePage(WebDriver driver){
         this.driver = driver;
