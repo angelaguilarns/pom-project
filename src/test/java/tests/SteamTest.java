@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.GamePage;
 import settings.BaseTest;
+import settings.ScreenshotMethods;
 
 public class SteamTest extends BaseTest {
 
@@ -22,7 +23,7 @@ public class SteamTest extends BaseTest {
     }
 
     @Test(groups = "regression")
-    public void validateSuggestedGames(){
+    public void validateSuggestedGames() throws Exception{
         gameToSearch = "slug";
         navigationBar.writeTextOnSearchInput(gameToSearch);
         int foundedGames = navigationBar.getSuggestedGames().size();
@@ -33,18 +34,21 @@ public class SteamTest extends BaseTest {
             Assert.assertTrue(game.toLowerCase().contains(gameToSearch),"Suggested games does not contains expected word");
             System.out.println(game+" contain the word "+gameToSearch);
         }
+
+        ScreenshotMethods.takeScreenshot(driver);
     }
 
     @Test(groups = "smoke")
-    public void searchGame(){
+    public void searchGame() throws Exception{
         gameToSearch = "million arthur: arcana blood";
         navigationBar.writeTextOnSearchInput(gameToSearch);
         navigationBar.clickOnGame(gameToSearch);
         gamePage.validateGameTittleOnPage(gameToSearch);
+        ScreenshotMethods.takeScreenshot(driver);
     }
 
     @Test(groups = "login")
-    public void validateGameInformation(){
+    public void validateGameInformation() throws Exception{
         gameToSearch = "Age of Empires II: Definitive Edition";
         navigationBar.writeTextOnSearchInput(gameToSearch);
         navigationBar.clickOnGame(gameToSearch);
@@ -56,9 +60,10 @@ public class SteamTest extends BaseTest {
                 "PUBLISHER: Xbox Game Studios\n" +
                 "FRANCHISE: Age of Empires";
         gamePage.validateGameDetails(gameDetailsTemplate);
+        ScreenshotMethods.takeScreenshot(driver);
     }
 
-    @Test
+    @Test()
     public void baseTest(){
         System.out.println("Test 1");
     }
