@@ -1,6 +1,8 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
 
@@ -14,19 +16,20 @@ public class HomePageTests extends BaseTest {
 
     private NavBar navBar;
 
-    @BeforeTest
+    @BeforeClass
     public void setUp(){
+        System.out.println("Running before class");
         navBar = new NavBar(this.driver);
     }
 
-    @Test(priority = 0)
+    @Test(priority = 0, enabled = false)
     public void openAllNavBarTabs() throws InterruptedException {
         navBar.openYourStoreTab();
         navBar.openGamesTab();
         Thread.sleep(15000);
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1,enabled = false)
     public void testSuggestedGames(){
         String game_name = "Portal";
         navBar.writeGameIntoSearchInput(game_name);
@@ -35,6 +38,11 @@ public class HomePageTests extends BaseTest {
         for(String game: games){
             Assert.assertTrue(game.indexOf("Portal") >= 0, "The game " + game + " is not correct. Not contains Search String " + game_name);
         }
+    }
+
+    @Test
+    public void testing(){
+        System.out.println("TEST");
     }
 
 }
