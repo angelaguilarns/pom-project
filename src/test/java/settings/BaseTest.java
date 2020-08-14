@@ -15,7 +15,7 @@ abstract public class BaseTest {
     @BeforeTest
     @org.testng.annotations.Parameters(value = {"browser"})
     public void suitSetup(String browser) throws MalformedURLException {
-        this.driver = new DriverSetup("chrome", false, true).getDriver();
+        this.driver = new DriverSetup("chrome", false, false).getDriver();
         this.driver.get("https://store.steampowered.com/");
         System.out.println("Browser from beforesiote "+browser);
         System.out.println("Running before test");
